@@ -29,6 +29,11 @@ translations work: [CONTRIBUTING.md](CONTRIBUTING.md); the template: [_template.
 
 - [The process allocator is replaced, but a native library still uses the old malloc](articles/platform/replacing-the-process-allocator.md)
 
+#### Build: compilers, linkers, CMake, packaging
+
+- [A GraalVM native-image DLL still needs the Visual C++ Redistributable](articles/build/native-image-dll-without-vc-redistributable.md)
+- [A static library links only with one C runtime: LNK2038, LNK4098, LNK2005 in the application](articles/build/static-library-for-any-msvc-runtime.md)
+
 #### Tooling: shells, WSL, git, GitHub, editors
 
 - [A command run in WSL from Git Bash or PowerShell arrives mangled](articles/tooling/calling-wsl-from-windows-shells.md)
@@ -42,11 +47,20 @@ translations work: [CONTRIBUTING.md](CONTRIBUTING.md); the template: [_template.
 - A library constant is empty or zero in the initializer of a global variable — [Library constants are empty or crash in global initializers and destructors of user code](articles/lifetime/library-constants-in-global-initializers.md)
 - A variable in `wsl -- bash -c '...'` is empty — [A command run in WSL from Git Bash or PowerShell arrives mangled](articles/tooling/calling-wsl-from-windows-shells.md)
 - ASan: `initialization-order-fiasco` — [Library constants are empty or crash in global initializers and destructors of user code](articles/lifetime/library-constants-in-global-initializers.md)
+- `dumpbin /dependents` shows `VCRUNTIME140.dll` and `api-ms-win-crt-*.dll` — [A GraalVM native-image DLL still needs the Visual C++ Redistributable](articles/build/native-image-dll-without-vc-redistributable.md)
+- Exit code `0xC0000135` when the application loads the library — [A GraalVM native-image DLL still needs the Visual C++ Redistributable](articles/build/native-image-dll-without-vc-redistributable.md)
 - Heap corruption in `free` of a pointer that another module allocated — [The process allocator is replaced, but a native library still uses the old malloc](articles/platform/replacing-the-process-allocator.md)
 - heap-use-after-free or a data race at exit under ASan / TSan — [Process exit when a library owns runtime threads that call back into user code](articles/lifetime/native-runtime-exit-and-callbacks.md)
 - `;`, `<`, `>`, `\` in the arguments of `wsl` act as shell syntax — [A command run in WSL from Git Bash or PowerShell arrives mangled](articles/tooling/calling-wsl-from-windows-shells.md)
 - It fails with the static library and works with the shared one — [Library constants are empty or crash in global initializers and destructors of user code](articles/lifetime/library-constants-in-global-initializers.md)
 - `LD_PRELOAD` or `DYLD_INSERT_LIBRARIES` has no effect — [The process allocator is replaced, but a native library still uses the old malloc](articles/platform/replacing-the-process-allocator.md)
+- `LNK2005: deflate already defined` when linking a third-party static library — [A static library links only with one C runtime: LNK2038, LNK4098, LNK2005 in the application](articles/build/static-library-for-any-msvc-runtime.md)
+- `LNK2019: unresolved external symbol __imp_getenv` — [A GraalVM native-image DLL still needs the Visual C++ Redistributable](articles/build/native-image-dll-without-vc-redistributable.md)
+- `LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL'` — [A static library links only with one C runtime: LNK2038, LNK4098, LNK2005 in the application](articles/build/static-library-for-any-msvc-runtime.md)
+- `LNK2038: mismatch detected for 'RuntimeLibrary'` — [A static library links only with one C runtime: LNK2038, LNK4098, LNK2005 in the application](articles/build/static-library-for-any-msvc-runtime.md)
+- `LNK4098: defaultlib 'LIBCMT' conflicts with use of other libs` — [A static library links only with one C runtime: LNK2038, LNK4098, LNK2005 in the application](articles/build/static-library-for-any-msvc-runtime.md)
+- `LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs` — [A GraalVM native-image DLL still needs the Visual C++ Redistributable](articles/build/native-image-dll-without-vc-redistributable.md)
+- `LNK4099: PDB 'vc140.pdb' was not found` — [A static library links only with one C runtime: LNK2038, LNK4098, LNK2005 in the application](articles/build/static-library-for-any-msvc-runtime.md)
 - `ls: cannot access 'C:/Program Files/Git/home/...'`: a Linux path became a Windows path — [A command run in WSL from Git Bash or PowerShell arrives mangled](articles/tooling/calling-wsl-from-windows-shells.md)
 - mimalloc is plugged in, but the profile still shows the system `malloc` in a library's frames — [The process allocator is replaced, but a native library still uses the old malloc](articles/platform/replacing-the-process-allocator.md)
 - `mimalloc-redirect.dll seems to be initialized after ucrtbase.dll` — [The process allocator is replaced, but a native library still uses the old malloc](articles/platform/replacing-the-process-allocator.md)
@@ -54,8 +68,10 @@ translations work: [CONTRIBUTING.md](CONTRIBUTING.md); the template: [_template.
 - `python3` prints `Python ` and exits with code 9009 — [A command run in WSL from Git Bash or PowerShell arrives mangled](articles/tooling/calling-wsl-from-windows-shells.md)
 - `$'\r': command not found` in a script from a Windows checkout — [A command run in WSL from Git Bash or PowerShell arrives mangled](articles/tooling/calling-wsl-from-windows-shells.md)
 - `standard malloc is _not_ redirected!` — [The process allocator is replaced, but a native library still uses the old malloc](articles/platform/replacing-the-process-allocator.md)
+- The application's executable exports the functions of a static library — [A static library links only with one C runtime: LNK2038, LNK4098, LNK2005 in the application](articles/build/static-library-for-any-msvc-runtime.md)
 - The process does not start: `0xC0000135`, `mimalloc-redirect.dll` was not found — [The process allocator is replaced, but a native library still uses the old malloc](articles/platform/replacing-the-process-allocator.md)
 - The process hangs at exit after `return` from `main()` — [Process exit when a library owns runtime threads that call back into user code](articles/lifetime/native-runtime-exit-and-callbacks.md)
+- `VCRUNTIME140.dll was not found` on a machine without the Visual C++ Redistributable — [A GraalVM native-image DLL still needs the Visual C++ Redistributable](articles/build/native-image-dll-without-vc-redistributable.md)
 
 ### By tag
 
@@ -63,18 +79,21 @@ translations work: [CONTRIBUTING.md](CONTRIBUTING.md); the template: [_template.
 - `callbacks`: [Process exit when a library owns runtime threads that call back into user code](articles/lifetime/native-runtime-exit-and-callbacks.md)
 - `constexpr`: [Library constants are empty or crash in global initializers and destructors of user code](articles/lifetime/library-constants-in-global-initializers.md)
 - `constinit`: [Library constants are empty or crash in global initializers and destructors of user code](articles/lifetime/library-constants-in-global-initializers.md)
+- `crt`: [A GraalVM native-image DLL still needs the Visual C++ Redistributable](articles/build/native-image-dll-without-vc-redistributable.md); [A static library links only with one C runtime: LNK2038, LNK4098, LNK2005 in the application](articles/build/static-library-for-any-msvc-runtime.md)
 - `exit`: [Process exit when a library owns runtime threads that call back into user code](articles/lifetime/native-runtime-exit-and-callbacks.md)
 - `git-bash`: [A command run in WSL from Git Bash or PowerShell arrives mangled](articles/tooling/calling-wsl-from-windows-shells.md)
-- `graalvm`: [Process exit when a library owns runtime threads that call back into user code](articles/lifetime/native-runtime-exit-and-callbacks.md); [The process allocator is replaced, but a native library still uses the old malloc](articles/platform/replacing-the-process-allocator.md)
+- `graalvm`: [A GraalVM native-image DLL still needs the Visual C++ Redistributable](articles/build/native-image-dll-without-vc-redistributable.md); [A static library links only with one C runtime: LNK2038, LNK4098, LNK2005 in the application](articles/build/static-library-for-any-msvc-runtime.md); [Process exit when a library owns runtime threads that call back into user code](articles/lifetime/native-runtime-exit-and-callbacks.md); [The process allocator is replaced, but a native library still uses the old malloc](articles/platform/replacing-the-process-allocator.md)
 - `jni`: [Process exit when a library owns runtime threads that call back into user code](articles/lifetime/native-runtime-exit-and-callbacks.md)
 - `lifetime`: [Process exit when a library owns runtime threads that call back into user code](articles/lifetime/native-runtime-exit-and-callbacks.md)
 - `line-endings`: [A command run in WSL from Git Bash or PowerShell arrives mangled](articles/tooling/calling-wsl-from-windows-shells.md)
+- `linker`: [A GraalVM native-image DLL still needs the Visual C++ Redistributable](articles/build/native-image-dll-without-vc-redistributable.md); [A static library links only with one C runtime: LNK2038, LNK4098, LNK2005 in the application](articles/build/static-library-for-any-msvc-runtime.md)
 - `linux`: [The process allocator is replaced, but a native library still uses the old malloc](articles/platform/replacing-the-process-allocator.md)
 - `macos`: [The process allocator is replaced, but a native library still uses the old malloc](articles/platform/replacing-the-process-allocator.md)
 - `malloc`: [The process allocator is replaced, but a native library still uses the old malloc](articles/platform/replacing-the-process-allocator.md)
 - `mimalloc`: [The process allocator is replaced, but a native library still uses the old malloc](articles/platform/replacing-the-process-allocator.md)
-- `msvc`: [Library constants are empty or crash in global initializers and destructors of user code](articles/lifetime/library-constants-in-global-initializers.md)
+- `msvc`: [A GraalVM native-image DLL still needs the Visual C++ Redistributable](articles/build/native-image-dll-without-vc-redistributable.md); [A static library links only with one C runtime: LNK2038, LNK4098, LNK2005 in the application](articles/build/static-library-for-any-msvc-runtime.md); [Library constants are empty or crash in global initializers and destructors of user code](articles/lifetime/library-constants-in-global-initializers.md)
 - `msys2`: [A command run in WSL from Git Bash or PowerShell arrives mangled](articles/tooling/calling-wsl-from-windows-shells.md)
+- `native-image`: [A GraalVM native-image DLL still needs the Visual C++ Redistributable](articles/build/native-image-dll-without-vc-redistributable.md); [A static library links only with one C runtime: LNK2038, LNK4098, LNK2005 in the application](articles/build/static-library-for-any-msvc-runtime.md)
 - `performance`: [The process allocator is replaced, but a native library still uses the old malloc](articles/platform/replacing-the-process-allocator.md)
 - `powershell`: [A command run in WSL from Git Bash or PowerShell arrives mangled](articles/tooling/calling-wsl-from-windows-shells.md)
 - `python`: [A command run in WSL from Git Bash or PowerShell arrives mangled](articles/tooling/calling-wsl-from-windows-shells.md)
@@ -83,10 +102,10 @@ translations work: [CONTRIBUTING.md](CONTRIBUTING.md); the template: [_template.
 - `shell`: [A command run in WSL from Git Bash or PowerShell arrives mangled](articles/tooling/calling-wsl-from-windows-shells.md)
 - `static-destruction`: [Library constants are empty or crash in global initializers and destructors of user code](articles/lifetime/library-constants-in-global-initializers.md)
 - `static-initialization`: [Library constants are empty or crash in global initializers and destructors of user code](articles/lifetime/library-constants-in-global-initializers.md)
-- `static-library`: [Library constants are empty or crash in global initializers and destructors of user code](articles/lifetime/library-constants-in-global-initializers.md)
+- `static-library`: [A static library links only with one C runtime: LNK2038, LNK4098, LNK2005 in the application](articles/build/static-library-for-any-msvc-runtime.md); [Library constants are empty or crash in global initializers and destructors of user code](articles/lifetime/library-constants-in-global-initializers.md)
 - `threads`: [Process exit when a library owns runtime threads that call back into user code](articles/lifetime/native-runtime-exit-and-callbacks.md)
-- `windows`: [The process allocator is replaced, but a native library still uses the old malloc](articles/platform/replacing-the-process-allocator.md); [A command run in WSL from Git Bash or PowerShell arrives mangled](articles/tooling/calling-wsl-from-windows-shells.md)
-- `windows-dll`: [Process exit when a library owns runtime threads that call back into user code](articles/lifetime/native-runtime-exit-and-callbacks.md); [The process allocator is replaced, but a native library still uses the old malloc](articles/platform/replacing-the-process-allocator.md)
+- `windows`: [A GraalVM native-image DLL still needs the Visual C++ Redistributable](articles/build/native-image-dll-without-vc-redistributable.md); [A static library links only with one C runtime: LNK2038, LNK4098, LNK2005 in the application](articles/build/static-library-for-any-msvc-runtime.md); [The process allocator is replaced, but a native library still uses the old malloc](articles/platform/replacing-the-process-allocator.md); [A command run in WSL from Git Bash or PowerShell arrives mangled](articles/tooling/calling-wsl-from-windows-shells.md)
+- `windows-dll`: [A GraalVM native-image DLL still needs the Visual C++ Redistributable](articles/build/native-image-dll-without-vc-redistributable.md); [Process exit when a library owns runtime threads that call back into user code](articles/lifetime/native-runtime-exit-and-callbacks.md); [The process allocator is replaced, but a native library still uses the old malloc](articles/platform/replacing-the-process-allocator.md)
 - `wsl`: [A command run in WSL from Git Bash or PowerShell arrives mangled](articles/tooling/calling-wsl-from-windows-shells.md)
 
 <!-- index:end -->

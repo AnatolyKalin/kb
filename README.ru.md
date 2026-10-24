@@ -29,6 +29,11 @@
 
 - [Аллокатор процесса заменён, а нативная библиотека всё ещё ходит в старый malloc](articles/platform/replacing-the-process-allocator.ru.md)
 
+#### Сборка: компиляторы, линковщики, CMake, пакеты
+
+- [DLL, собранной GraalVM native-image, по-прежнему нужен Visual C++ Redistributable](articles/build/native-image-dll-without-vc-redistributable.ru.md)
+- [Статическая библиотека линкуется только с одним CRT: LNK2038, LNK4098, LNK2005 в приложении](articles/build/static-library-for-any-msvc-runtime.ru.md)
+
 #### Инструменты: оболочки, WSL, git, GitHub, редакторы
 
 - [Команда, запущенная в WSL из Git Bash или PowerShell, приходит искажённой](articles/tooling/calling-wsl-from-windows-shells.ru.md)
@@ -36,8 +41,16 @@
 ### По симптомам
 
 - ASan: `initialization-order-fiasco` — [Константы библиотеки пусты или роняют программу в инициализаторах и деструкторах глобальных объектов](articles/lifetime/library-constants-in-global-initializers.ru.md)
+- `dumpbin /dependents` показывает `VCRUNTIME140.dll` и `api-ms-win-crt-*.dll` — [DLL, собранной GraalVM native-image, по-прежнему нужен Visual C++ Redistributable](articles/build/native-image-dll-without-vc-redistributable.ru.md)
 - heap-use-after-free или гонка на выходе под ASan / TSan — [Выход процесса, когда библиотека держит свои потоки и зовёт колбэки](articles/lifetime/native-runtime-exit-and-callbacks.ru.md)
 - `LD_PRELOAD` или `DYLD_INSERT_LIBRARIES` ни на что не влияют — [Аллокатор процесса заменён, а нативная библиотека всё ещё ходит в старый malloc](articles/platform/replacing-the-process-allocator.ru.md)
+- `LNK2005: deflate already defined` при линковке сторонней статической библиотеки — [Статическая библиотека линкуется только с одним CRT: LNK2038, LNK4098, LNK2005 в приложении](articles/build/static-library-for-any-msvc-runtime.ru.md)
+- `LNK2019: unresolved external symbol __imp_getenv` — [DLL, собранной GraalVM native-image, по-прежнему нужен Visual C++ Redistributable](articles/build/native-image-dll-without-vc-redistributable.ru.md)
+- `LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL'` — [Статическая библиотека линкуется только с одним CRT: LNK2038, LNK4098, LNK2005 в приложении](articles/build/static-library-for-any-msvc-runtime.ru.md)
+- `LNK2038: mismatch detected for 'RuntimeLibrary'` — [Статическая библиотека линкуется только с одним CRT: LNK2038, LNK4098, LNK2005 в приложении](articles/build/static-library-for-any-msvc-runtime.ru.md)
+- `LNK4098: defaultlib 'LIBCMT' conflicts with use of other libs` — [Статическая библиотека линкуется только с одним CRT: LNK2038, LNK4098, LNK2005 в приложении](articles/build/static-library-for-any-msvc-runtime.ru.md)
+- `LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs` — [DLL, собранной GraalVM native-image, по-прежнему нужен Visual C++ Redistributable](articles/build/native-image-dll-without-vc-redistributable.ru.md)
+- `LNK4099: PDB 'vc140.pdb' was not found` — [Статическая библиотека линкуется только с одним CRT: LNK2038, LNK4098, LNK2005 в приложении](articles/build/static-library-for-any-msvc-runtime.ru.md)
 - `ls: cannot access 'C:/Program Files/Git/home/...'`: путь Linux превратился в путь Windows — [Команда, запущенная в WSL из Git Bash или PowerShell, приходит искажённой](articles/tooling/calling-wsl-from-windows-shells.ru.md)
 - mimalloc подключён, но в профиле под кадрами библиотеки по-прежнему системный `malloc` — [Аллокатор процесса заменён, а нативная библиотека всё ещё ходит в старый malloc](articles/platform/replacing-the-process-allocator.ru.md)
 - `mimalloc-redirect.dll seems to be initialized after ucrtbase.dll` — [Аллокатор процесса заменён, а нативная библиотека всё ещё ходит в старый malloc](articles/platform/replacing-the-process-allocator.ru.md)
@@ -45,8 +58,11 @@
 - `python3` печатает `Python ` и выходит с кодом 9009 — [Команда, запущенная в WSL из Git Bash или PowerShell, приходит искажённой](articles/tooling/calling-wsl-from-windows-shells.ru.md)
 - `$'\r': command not found` в скрипте из checkout на Windows — [Команда, запущенная в WSL из Git Bash или PowerShell, приходит искажённой](articles/tooling/calling-wsl-from-windows-shells.ru.md)
 - `standard malloc is _not_ redirected!` — [Аллокатор процесса заменён, а нативная библиотека всё ещё ходит в старый malloc](articles/platform/replacing-the-process-allocator.ru.md)
+- `VCRUNTIME140.dll was not found` на машине без Visual C++ Redistributable — [DLL, собранной GraalVM native-image, по-прежнему нужен Visual C++ Redistributable](articles/build/native-image-dll-without-vc-redistributable.ru.md)
 - `;`, `<`, `>`, `\` в аргументах `wsl` работают как синтаксис оболочки — [Команда, запущенная в WSL из Git Bash или PowerShell, приходит искажённой](articles/tooling/calling-wsl-from-windows-shells.ru.md)
 - Зависание или падение в `DLL_PROCESS_DETACH` — [Выход процесса, когда библиотека держит свои потоки и зовёт колбэки](articles/lifetime/native-runtime-exit-and-callbacks.ru.md)
+- Исполняемый файл приложения экспортирует функции статической библиотеки — [Статическая библиотека линкуется только с одним CRT: LNK2038, LNK4098, LNK2005 в приложении](articles/build/static-library-for-any-msvc-runtime.ru.md)
+- Код выхода `0xC0000135`, когда приложение загружает библиотеку — [DLL, собранной GraalVM native-image, по-прежнему нужен Visual C++ Redistributable](articles/build/native-image-dll-without-vc-redistributable.ru.md)
 - Колбэк приходит после разрушения объектов библиотеки — [Выход процесса, когда библиотека держит свои потоки и зовёт колбэки](articles/lifetime/native-runtime-exit-and-callbacks.ru.md)
 - Константа библиотеки пуста или равна нулю в инициализаторе глобальной переменной — [Константы библиотеки пусты или роняют программу в инициализаторах и деструкторах глобальных объектов](articles/lifetime/library-constants-in-global-initializers.ru.md)
 - Падает со статической библиотекой и работает с динамической — [Константы библиотеки пусты или роняют программу в инициализаторах и деструкторах глобальных объектов](articles/lifetime/library-constants-in-global-initializers.ru.md)
@@ -63,18 +79,21 @@
 - `callbacks`: [Выход процесса, когда библиотека держит свои потоки и зовёт колбэки](articles/lifetime/native-runtime-exit-and-callbacks.ru.md)
 - `constexpr`: [Константы библиотеки пусты или роняют программу в инициализаторах и деструкторах глобальных объектов](articles/lifetime/library-constants-in-global-initializers.ru.md)
 - `constinit`: [Константы библиотеки пусты или роняют программу в инициализаторах и деструкторах глобальных объектов](articles/lifetime/library-constants-in-global-initializers.ru.md)
+- `crt`: [DLL, собранной GraalVM native-image, по-прежнему нужен Visual C++ Redistributable](articles/build/native-image-dll-without-vc-redistributable.ru.md); [Статическая библиотека линкуется только с одним CRT: LNK2038, LNK4098, LNK2005 в приложении](articles/build/static-library-for-any-msvc-runtime.ru.md)
 - `exit`: [Выход процесса, когда библиотека держит свои потоки и зовёт колбэки](articles/lifetime/native-runtime-exit-and-callbacks.ru.md)
 - `git-bash`: [Команда, запущенная в WSL из Git Bash или PowerShell, приходит искажённой](articles/tooling/calling-wsl-from-windows-shells.ru.md)
-- `graalvm`: [Выход процесса, когда библиотека держит свои потоки и зовёт колбэки](articles/lifetime/native-runtime-exit-and-callbacks.ru.md); [Аллокатор процесса заменён, а нативная библиотека всё ещё ходит в старый malloc](articles/platform/replacing-the-process-allocator.ru.md)
+- `graalvm`: [DLL, собранной GraalVM native-image, по-прежнему нужен Visual C++ Redistributable](articles/build/native-image-dll-without-vc-redistributable.ru.md); [Статическая библиотека линкуется только с одним CRT: LNK2038, LNK4098, LNK2005 в приложении](articles/build/static-library-for-any-msvc-runtime.ru.md); [Выход процесса, когда библиотека держит свои потоки и зовёт колбэки](articles/lifetime/native-runtime-exit-and-callbacks.ru.md); [Аллокатор процесса заменён, а нативная библиотека всё ещё ходит в старый malloc](articles/platform/replacing-the-process-allocator.ru.md)
 - `jni`: [Выход процесса, когда библиотека держит свои потоки и зовёт колбэки](articles/lifetime/native-runtime-exit-and-callbacks.ru.md)
 - `lifetime`: [Выход процесса, когда библиотека держит свои потоки и зовёт колбэки](articles/lifetime/native-runtime-exit-and-callbacks.ru.md)
 - `line-endings`: [Команда, запущенная в WSL из Git Bash или PowerShell, приходит искажённой](articles/tooling/calling-wsl-from-windows-shells.ru.md)
+- `linker`: [DLL, собранной GraalVM native-image, по-прежнему нужен Visual C++ Redistributable](articles/build/native-image-dll-without-vc-redistributable.ru.md); [Статическая библиотека линкуется только с одним CRT: LNK2038, LNK4098, LNK2005 в приложении](articles/build/static-library-for-any-msvc-runtime.ru.md)
 - `linux`: [Аллокатор процесса заменён, а нативная библиотека всё ещё ходит в старый malloc](articles/platform/replacing-the-process-allocator.ru.md)
 - `macos`: [Аллокатор процесса заменён, а нативная библиотека всё ещё ходит в старый malloc](articles/platform/replacing-the-process-allocator.ru.md)
 - `malloc`: [Аллокатор процесса заменён, а нативная библиотека всё ещё ходит в старый malloc](articles/platform/replacing-the-process-allocator.ru.md)
 - `mimalloc`: [Аллокатор процесса заменён, а нативная библиотека всё ещё ходит в старый malloc](articles/platform/replacing-the-process-allocator.ru.md)
-- `msvc`: [Константы библиотеки пусты или роняют программу в инициализаторах и деструкторах глобальных объектов](articles/lifetime/library-constants-in-global-initializers.ru.md)
+- `msvc`: [DLL, собранной GraalVM native-image, по-прежнему нужен Visual C++ Redistributable](articles/build/native-image-dll-without-vc-redistributable.ru.md); [Статическая библиотека линкуется только с одним CRT: LNK2038, LNK4098, LNK2005 в приложении](articles/build/static-library-for-any-msvc-runtime.ru.md); [Константы библиотеки пусты или роняют программу в инициализаторах и деструкторах глобальных объектов](articles/lifetime/library-constants-in-global-initializers.ru.md)
 - `msys2`: [Команда, запущенная в WSL из Git Bash или PowerShell, приходит искажённой](articles/tooling/calling-wsl-from-windows-shells.ru.md)
+- `native-image`: [DLL, собранной GraalVM native-image, по-прежнему нужен Visual C++ Redistributable](articles/build/native-image-dll-without-vc-redistributable.ru.md); [Статическая библиотека линкуется только с одним CRT: LNK2038, LNK4098, LNK2005 в приложении](articles/build/static-library-for-any-msvc-runtime.ru.md)
 - `performance`: [Аллокатор процесса заменён, а нативная библиотека всё ещё ходит в старый malloc](articles/platform/replacing-the-process-allocator.ru.md)
 - `powershell`: [Команда, запущенная в WSL из Git Bash или PowerShell, приходит искажённой](articles/tooling/calling-wsl-from-windows-shells.ru.md)
 - `python`: [Команда, запущенная в WSL из Git Bash или PowerShell, приходит искажённой](articles/tooling/calling-wsl-from-windows-shells.ru.md)
@@ -83,10 +102,10 @@
 - `shell`: [Команда, запущенная в WSL из Git Bash или PowerShell, приходит искажённой](articles/tooling/calling-wsl-from-windows-shells.ru.md)
 - `static-destruction`: [Константы библиотеки пусты или роняют программу в инициализаторах и деструкторах глобальных объектов](articles/lifetime/library-constants-in-global-initializers.ru.md)
 - `static-initialization`: [Константы библиотеки пусты или роняют программу в инициализаторах и деструкторах глобальных объектов](articles/lifetime/library-constants-in-global-initializers.ru.md)
-- `static-library`: [Константы библиотеки пусты или роняют программу в инициализаторах и деструкторах глобальных объектов](articles/lifetime/library-constants-in-global-initializers.ru.md)
+- `static-library`: [Статическая библиотека линкуется только с одним CRT: LNK2038, LNK4098, LNK2005 в приложении](articles/build/static-library-for-any-msvc-runtime.ru.md); [Константы библиотеки пусты или роняют программу в инициализаторах и деструкторах глобальных объектов](articles/lifetime/library-constants-in-global-initializers.ru.md)
 - `threads`: [Выход процесса, когда библиотека держит свои потоки и зовёт колбэки](articles/lifetime/native-runtime-exit-and-callbacks.ru.md)
-- `windows`: [Аллокатор процесса заменён, а нативная библиотека всё ещё ходит в старый malloc](articles/platform/replacing-the-process-allocator.ru.md); [Команда, запущенная в WSL из Git Bash или PowerShell, приходит искажённой](articles/tooling/calling-wsl-from-windows-shells.ru.md)
-- `windows-dll`: [Выход процесса, когда библиотека держит свои потоки и зовёт колбэки](articles/lifetime/native-runtime-exit-and-callbacks.ru.md); [Аллокатор процесса заменён, а нативная библиотека всё ещё ходит в старый malloc](articles/platform/replacing-the-process-allocator.ru.md)
+- `windows`: [DLL, собранной GraalVM native-image, по-прежнему нужен Visual C++ Redistributable](articles/build/native-image-dll-without-vc-redistributable.ru.md); [Статическая библиотека линкуется только с одним CRT: LNK2038, LNK4098, LNK2005 в приложении](articles/build/static-library-for-any-msvc-runtime.ru.md); [Аллокатор процесса заменён, а нативная библиотека всё ещё ходит в старый malloc](articles/platform/replacing-the-process-allocator.ru.md); [Команда, запущенная в WSL из Git Bash или PowerShell, приходит искажённой](articles/tooling/calling-wsl-from-windows-shells.ru.md)
+- `windows-dll`: [DLL, собранной GraalVM native-image, по-прежнему нужен Visual C++ Redistributable](articles/build/native-image-dll-without-vc-redistributable.ru.md); [Выход процесса, когда библиотека держит свои потоки и зовёт колбэки](articles/lifetime/native-runtime-exit-and-callbacks.ru.md); [Аллокатор процесса заменён, а нативная библиотека всё ещё ходит в старый malloc](articles/platform/replacing-the-process-allocator.ru.md)
 - `wsl`: [Команда, запущенная в WSL из Git Bash или PowerShell, приходит искажённой](articles/tooling/calling-wsl-from-windows-shells.ru.md)
 
 <!-- index:end -->
