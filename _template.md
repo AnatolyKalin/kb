@@ -1,38 +1,38 @@
-# <Симптом или ситуация, как её будут искать>
+# <The symptom or the situation, the way people will search for it>
 
-<К какому классу задач относится, где ещё бывает — 2–3 строки.>
+<Which class of problems, where else it happens: 2–3 lines.>
 
-Теги: `<tag>` `<tag>`
-Обновлено: <ГГГГ-ММ>.
+Tags: `<tag>` `<tag>`
+Updated: <YYYY-MM>.
 
-## Симптомы
+## Symptoms
 
-- <Что видно снаружи: зависание, код выхода, текст ошибки, отчёт санитайзера.>
+- <What is visible from outside: a hang, an exit code, an error message, a sanitizer report.>
 
-## Причины
+## Causes
 
-1. **<Механизм.>** <Почему так происходит.>
+1. **<The mechanism.>** <Why it happens.>
 
-## Рецепт
+## Recipe
 
-1. **<Шаг.>** <Что сделать.>
+1. **<The step.>** <What to do.>
 
 ```cpp
-// Только суть, 5–20 строк.
+// Only the essence, 5–20 lines.
 ```
 
-## Как тестировать
+## How to test
 
-- <Как воспроизвести; как сделать красную проверку: выключить исправление — тест краснеет.>
+- <How to reproduce; the red check: disable the fix and the test fails.>
 
-## Чек-лист для ревью
+## Review checklist
 
-- [ ] <Пункт.>
+- [ ] <Item.>
 
-## Где встречалось
+## Seen in
 
-- **<Проект>** — <симптом, причина, как решили, 2–3 предложения>: [<ссылка>](<url>).
+- **<Project>**: <the symptom, the cause, the fix, 2–3 sentences>: [<link>](<url>).
 
-## Открытые вопросы
+## Open questions
 
-- <Что не проверено.>
+- <What is not verified.>

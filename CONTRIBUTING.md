@@ -1,59 +1,62 @@
-# Как писать статью
+# How to write an article
 
-Неформальные правила. Цель — чтобы через год, наступив на те же грабли, статью нашли по симптому и починили по
-рецепту, не перечитывая историю тикета.
+Informal rules. The goal: a year later, stepping on the same rake, you find the article by the symptom and fix the
+problem by the recipe, without rereading the ticket history.
 
-## Что становится статьёй
+## What makes an article
 
-- Класс задач, а не одна ошибка: «выход процесса с потоками рантайма», а не «баг в функции X».
-- Причина была неочевидной, или на неё уже наступали дважды.
-- Есть проверенный рецепт или хотя бы проверенное объяснение. Догадки — в раздел «Открытые вопросы».
+- A class of problems, not a single bug: "process exit with runtime threads", not "a bug in function X".
+- The cause was not obvious, or someone has already stepped on it twice.
+- There is a verified recipe, or at least a verified explanation. Guesses go to "Open questions".
 
-## Название и файл
+## Title and file
 
-- Заголовок — по симптому или по ситуации, как его будут искать: «Процесс висит на выходе…», «Колбэк после
-  закрытия…». Не по номеру тикета и не по названию продукта.
-- Файл — `kebab-case` по теме, без дат и номеров: `native-runtime-exit-and-callbacks.md`.
-- Новая статья — строка в таблице в `README.md`.
+- The title names the symptom or the situation, the way people will search for it: "The process hangs at exit…",
+  "A callback after close…". Not a ticket number, not a product name.
+- The file name is `kebab-case` by topic, with no dates or numbers: `native-runtime-exit-and-callbacks.md`.
+- A new article gets a row in the table in `README.md`.
 
-## Структура
+## Structure
 
-Шаблон — [`_template.md`](_template.md). Разделы можно опускать, если им нечего сказать:
+The template is [`_template.md`](_template.md). Skip a section if it has nothing to say:
 
-1. **Вступление** (2–3 строки): к какому классу задач относится, где ещё бывает.
-2. **Теги и дата обновления.**
-3. **Симптомы** — то, что видно снаружи: зависание, код выхода, отчёт санитайзера, текст ошибки (ключевые строки,
-   чтобы находилось поиском).
-4. **Причины** — механизм, по пунктам; если их несколько, все.
-5. **Рецепт** — что делать, по шагам; короткий код (5–20 строк), только суть.
-6. **Как тестировать** — как воспроизвести и как сделать красную проверку.
-7. **Чек-лист для ревью** — короткие пункты с `- [ ]`.
-8. **Где встречалось** — ссылки на публичные issue, PR, коммиты, документацию; свои случаи и чужие.
-9. **Открытые вопросы** — что не проверено.
+1. **Introduction** (2–3 lines): which class of problems, where else it happens.
+2. **Tags and the update date.**
+3. **Symptoms**: what is visible from outside: a hang, an exit code, a sanitizer report, an error message (the key
+   lines, so that search finds them).
+4. **Causes**: the mechanism, point by point; if there are several, all of them.
+5. **Recipe**: what to do, step by step; short code (5–20 lines), only the essence.
+6. **How to test**: how to reproduce, and how to make a red check.
+7. **Review checklist**: short `- [ ]` items.
+8. **Seen in**: links to public issues, PRs, commits, docs; own cases and others'.
+9. **Open questions**: what is not verified.
 
-## Публичность
+## Public
 
-Репозиторий публичный. В статье нет:
+The repository is public. An article contains no:
 
-- ключей внутренних трекеров (Jira и т. п.), внутренних адресов, имён хостов, путей рабочих машин;
-- имён клиентов и людей, кода и логов из закрытых репозиториев;
-- токенов, паролей, внутренних конфигураций.
+- keys of internal trackers (Jira and the like), internal addresses, host names, paths on work machines;
+- names of customers or people, code or logs from closed repositories;
+- tokens, passwords, internal configuration.
 
-Вместо этого — ссылка на публичный PR/коммит, если он есть, или пересказ без привязки к проекту. Если пример
-нельзя показать — придумать минимальный свой.
+Instead, link a public PR or commit if there is one, or retell the case without tying it to the project. If an
+example cannot be shown, write a minimal one of your own.
 
-## Ссылки и чужой код
+## Links and others' code
 
-- У каждого утверждения про чужое поведение (CRT, рантайм, ОС) — ссылка на первоисточник: исходники, документацию,
-  issue. Чего не проверили — пометить «гипотеза».
-- Чужой код не копировать целиком: ссылка на строку в репозитории (лучше на коммит, а не на ветку) и пересказ;
-  цитата — короткая, в кавычках, с источником.
-- Пример из открытого проекта: проект, ссылка, 2–3 предложения — симптом, причина, как решили.
+- Every claim about someone else's behaviour (a C runtime, a VM, an OS) links to a primary source: the source code,
+  docs, an issue. Mark what was not verified as a hypothesis.
+- Do not copy others' code wholesale: link the line in the repository (a commit rather than a branch) and retell it; a
+  quote is short, in quotation marks, with the source.
+- An example from an open-source project: the project, a link, 2–3 sentences: the symptom, the cause, the fix.
 
-## Язык и стиль
+## Language and style
 
-- Язык статьи — русский или английский, один на статью. Термины и идентификаторы — как в коде (`atexit`,
-  `DLL_PROCESS_DETACH`), без перевода.
-- Коротко и по делу: списки вместо абзацев, без истории «как мы искали».
-- Markdown без HTML; строки до 120 символов; код в блоках с языком (` ```cpp `).
-- Обновили статью — поменять дату «Обновлено».
+- English. Terms and identifiers as in the code (`atexit`, `DLL_PROCESS_DETACH`).
+- Short and to the point: lists rather than paragraphs, no story of how the bug was hunted.
+- Markdown without HTML; lines up to 120 characters; code blocks with a language (` ```cpp `).
+- When you update an article, change its "Updated" date.
+
+## License
+
+By contributing you agree that your contribution is licensed under [CC BY 4.0](LICENSE).

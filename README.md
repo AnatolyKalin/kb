@@ -1,11 +1,15 @@
-# Грабли и рецепты
+# Rakes and recipes
 
-Заметки о повторяющихся инженерных проблемах: симптомы, причины, проверенный рецепт, как тестировать, чек-лист для
-ревью и где ещё это встречалось. Одна статья — один класс задач. Как писать — [CONTRIBUTING.md](CONTRIBUTING.md),
-шаблон — [_template.md](_template.md).
+Notes on recurring engineering problems: symptoms, causes, a verified recipe, how to test, a review checklist and
+where else the problem has been seen. One article covers one class of problems. How to write one:
+[CONTRIBUTING.md](CONTRIBUTING.md); the template: [_template.md](_template.md).
 
-## Статьи
+## Articles
 
-| Статья | О чём | Теги |
+| Article | About | Tags |
 |---|---|---|
-| [Выход процесса, когда библиотека держит свои потоки и зовёт колбэки](native-runtime-exit-and-callbacks.md) | Зависание и use-after-free на выходе, порядок `atexit` и статиков, Windows DLL, ожидание идущих колбэков | `c++` `exit` `callbacks` `windows-dll` `graalvm` `jni` |
+| [Process exit when a library owns runtime threads that call back into user code](native-runtime-exit-and-callbacks.md) | A hang or use-after-free at exit, `atexit` vs static destruction order, Windows DLL, waiting for callbacks in progress | `c++` `exit` `callbacks` `windows-dll` `graalvm` `jni` |
+
+## License
+
+The texts are licensed under [Creative Commons Attribution 4.0 International (CC BY 4.0)](LICENSE).
