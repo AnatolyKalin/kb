@@ -37,7 +37,8 @@ Examples and links: [Seen in](#seen-in).
 2. **`wsl.exe` hands the command to the default Linux shell.** `wsl <command>` and `wsl -- <command>` do not run the
    command directly: they build one command line and pass it to the user's shell (`$SHELL -c`). Arguments with spaces
    are kept whole, but `$`, `;`, `<`, `>`, `|`, `\` and globs are parsed a second time, so `$X` is expanded by the
-   outer shell, where it is not set. `wsl -e` (`--exec`) runs the program without that shell.
+   outer shell, where it is not set. `wsl -e` (`--exec`) runs the program without that shell. Other layers that eat
+   backslashes: [Backslashes disappear from code written through a shell](backslashes-lost-on-the-way-through-a-shell.md).
 3. **PowerShell expands `$X` in double quotes itself.** Single quotes protect `$X` from PowerShell, not from cause 2.
 4. **Windows environment variables do not reach WSL** unless they are listed in `WSLENV`.
 5. **CRLF line endings.** A checkout with `core.autocrlf=true` gives scripts with `\r\n`; bash reads `\r` as part of
