@@ -28,6 +28,10 @@
     "testing": {
       "en": "Testing: tests, CI, sanitizers",
       "ru": "Тестирование: тесты, CI, санитайзеры"
+    },
+    "tooling": {
+      "en": "Tooling: shells, WSL, git, GitHub, editors",
+      "ru": "Инструменты: оболочки, WSL, git, GitHub, редакторы"
     }
   },
   "text": {

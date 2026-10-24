@@ -1,6 +1,6 @@
 ---
 title: "<Симптом или ситуация, как её будут искать>"
-area: <lifetime | concurrency | interop | platform | build | testing>
+area: <lifetime | concurrency | interop | platform | build | testing | tooling>
 tags: [<tag>, <tag>]
 symptoms:
   - "<Что будут искать: текст ошибки, зависание, код выхода>"

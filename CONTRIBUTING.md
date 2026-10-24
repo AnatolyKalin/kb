@@ -29,6 +29,7 @@ An article lies in `articles/<area>/`; pick the area of the root cause, not of t
 - `platform`: specifics of Windows, Linux, macOS (loaders, C runtimes, signals).
 - `build`: compilers, linkers, CMake, packaging.
 - `testing`: tests, CI, sanitizers.
+- `tooling`: shells, WSL, git, GitHub, editors and other tools around the code.
 
 A new area: add it to `tools/kb.json` with its name in every language, and to this list in every translation.
 

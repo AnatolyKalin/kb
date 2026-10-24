@@ -1,6 +1,6 @@
 ---
 title: "<The symptom or the situation, the way people will search for it>"
-area: <lifetime | concurrency | interop | platform | build | testing>
+area: <lifetime | concurrency | interop | platform | build | testing | tooling>
 tags: [<tag>, <tag>]
 symptoms:
   - "<What people will search for: an error message, a hang, an exit code>"
