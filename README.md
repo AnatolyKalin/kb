@@ -25,6 +25,10 @@ translations work: [CONTRIBUTING.md](CONTRIBUTING.md); the template: [_template.
 - [Library constants are empty or crash in global initializers and destructors of user code](articles/lifetime/library-constants-in-global-initializers.md)
 - [Process exit when a library owns runtime threads that call back into user code](articles/lifetime/native-runtime-exit-and-callbacks.md)
 
+#### Platform: Windows, Linux, macOS specifics
+
+- [The process allocator is replaced, but a native library still uses the old malloc](articles/platform/replacing-the-process-allocator.md)
+
 #### Tooling: shells, WSL, git, GitHub, editors
 
 - [A command run in WSL from Git Bash or PowerShell arrives mangled](articles/tooling/calling-wsl-from-windows-shells.md)
@@ -38,13 +42,19 @@ translations work: [CONTRIBUTING.md](CONTRIBUTING.md); the template: [_template.
 - A library constant is empty or zero in the initializer of a global variable — [Library constants are empty or crash in global initializers and destructors of user code](articles/lifetime/library-constants-in-global-initializers.md)
 - A variable in `wsl -- bash -c '...'` is empty — [A command run in WSL from Git Bash or PowerShell arrives mangled](articles/tooling/calling-wsl-from-windows-shells.md)
 - ASan: `initialization-order-fiasco` — [Library constants are empty or crash in global initializers and destructors of user code](articles/lifetime/library-constants-in-global-initializers.md)
+- Heap corruption in `free` of a pointer that another module allocated — [The process allocator is replaced, but a native library still uses the old malloc](articles/platform/replacing-the-process-allocator.md)
 - heap-use-after-free or a data race at exit under ASan / TSan — [Process exit when a library owns runtime threads that call back into user code](articles/lifetime/native-runtime-exit-and-callbacks.md)
 - `;`, `<`, `>`, `\` in the arguments of `wsl` act as shell syntax — [A command run in WSL from Git Bash or PowerShell arrives mangled](articles/tooling/calling-wsl-from-windows-shells.md)
 - It fails with the static library and works with the shared one — [Library constants are empty or crash in global initializers and destructors of user code](articles/lifetime/library-constants-in-global-initializers.md)
+- `LD_PRELOAD` or `DYLD_INSERT_LIBRARIES` has no effect — [The process allocator is replaced, but a native library still uses the old malloc](articles/platform/replacing-the-process-allocator.md)
 - `ls: cannot access 'C:/Program Files/Git/home/...'`: a Linux path became a Windows path — [A command run in WSL from Git Bash or PowerShell arrives mangled](articles/tooling/calling-wsl-from-windows-shells.md)
+- mimalloc is plugged in, but the profile still shows the system `malloc` in a library's frames — [The process allocator is replaced, but a native library still uses the old malloc](articles/platform/replacing-the-process-allocator.md)
+- `mimalloc-redirect.dll seems to be initialized after ucrtbase.dll` — [The process allocator is replaced, but a native library still uses the old malloc](articles/platform/replacing-the-process-allocator.md)
 - `pure virtual function call` in the destructor of a global variable at exit — [Library constants are empty or crash in global initializers and destructors of user code](articles/lifetime/library-constants-in-global-initializers.md)
 - `python3` prints `Python ` and exits with code 9009 — [A command run in WSL from Git Bash or PowerShell arrives mangled](articles/tooling/calling-wsl-from-windows-shells.md)
 - `$'\r': command not found` in a script from a Windows checkout — [A command run in WSL from Git Bash or PowerShell arrives mangled](articles/tooling/calling-wsl-from-windows-shells.md)
+- `standard malloc is _not_ redirected!` — [The process allocator is replaced, but a native library still uses the old malloc](articles/platform/replacing-the-process-allocator.md)
+- The process does not start: `0xC0000135`, `mimalloc-redirect.dll` was not found — [The process allocator is replaced, but a native library still uses the old malloc](articles/platform/replacing-the-process-allocator.md)
 - The process hangs at exit after `return` from `main()` — [Process exit when a library owns runtime threads that call back into user code](articles/lifetime/native-runtime-exit-and-callbacks.md)
 
 ### By tag
@@ -55,12 +65,17 @@ translations work: [CONTRIBUTING.md](CONTRIBUTING.md); the template: [_template.
 - `constinit`: [Library constants are empty or crash in global initializers and destructors of user code](articles/lifetime/library-constants-in-global-initializers.md)
 - `exit`: [Process exit when a library owns runtime threads that call back into user code](articles/lifetime/native-runtime-exit-and-callbacks.md)
 - `git-bash`: [A command run in WSL from Git Bash or PowerShell arrives mangled](articles/tooling/calling-wsl-from-windows-shells.md)
-- `graalvm`: [Process exit when a library owns runtime threads that call back into user code](articles/lifetime/native-runtime-exit-and-callbacks.md)
+- `graalvm`: [Process exit when a library owns runtime threads that call back into user code](articles/lifetime/native-runtime-exit-and-callbacks.md); [The process allocator is replaced, but a native library still uses the old malloc](articles/platform/replacing-the-process-allocator.md)
 - `jni`: [Process exit when a library owns runtime threads that call back into user code](articles/lifetime/native-runtime-exit-and-callbacks.md)
 - `lifetime`: [Process exit when a library owns runtime threads that call back into user code](articles/lifetime/native-runtime-exit-and-callbacks.md)
 - `line-endings`: [A command run in WSL from Git Bash or PowerShell arrives mangled](articles/tooling/calling-wsl-from-windows-shells.md)
+- `linux`: [The process allocator is replaced, but a native library still uses the old malloc](articles/platform/replacing-the-process-allocator.md)
+- `macos`: [The process allocator is replaced, but a native library still uses the old malloc](articles/platform/replacing-the-process-allocator.md)
+- `malloc`: [The process allocator is replaced, but a native library still uses the old malloc](articles/platform/replacing-the-process-allocator.md)
+- `mimalloc`: [The process allocator is replaced, but a native library still uses the old malloc](articles/platform/replacing-the-process-allocator.md)
 - `msvc`: [Library constants are empty or crash in global initializers and destructors of user code](articles/lifetime/library-constants-in-global-initializers.md)
 - `msys2`: [A command run in WSL from Git Bash or PowerShell arrives mangled](articles/tooling/calling-wsl-from-windows-shells.md)
+- `performance`: [The process allocator is replaced, but a native library still uses the old malloc](articles/platform/replacing-the-process-allocator.md)
 - `powershell`: [A command run in WSL from Git Bash or PowerShell arrives mangled](articles/tooling/calling-wsl-from-windows-shells.md)
 - `python`: [A command run in WSL from Git Bash or PowerShell arrives mangled](articles/tooling/calling-wsl-from-windows-shells.md)
 - `quoting`: [A command run in WSL from Git Bash or PowerShell arrives mangled](articles/tooling/calling-wsl-from-windows-shells.md)
@@ -70,8 +85,8 @@ translations work: [CONTRIBUTING.md](CONTRIBUTING.md); the template: [_template.
 - `static-initialization`: [Library constants are empty or crash in global initializers and destructors of user code](articles/lifetime/library-constants-in-global-initializers.md)
 - `static-library`: [Library constants are empty or crash in global initializers and destructors of user code](articles/lifetime/library-constants-in-global-initializers.md)
 - `threads`: [Process exit when a library owns runtime threads that call back into user code](articles/lifetime/native-runtime-exit-and-callbacks.md)
-- `windows`: [A command run in WSL from Git Bash or PowerShell arrives mangled](articles/tooling/calling-wsl-from-windows-shells.md)
-- `windows-dll`: [Process exit when a library owns runtime threads that call back into user code](articles/lifetime/native-runtime-exit-and-callbacks.md)
+- `windows`: [The process allocator is replaced, but a native library still uses the old malloc](articles/platform/replacing-the-process-allocator.md); [A command run in WSL from Git Bash or PowerShell arrives mangled](articles/tooling/calling-wsl-from-windows-shells.md)
+- `windows-dll`: [Process exit when a library owns runtime threads that call back into user code](articles/lifetime/native-runtime-exit-and-callbacks.md); [The process allocator is replaced, but a native library still uses the old malloc](articles/platform/replacing-the-process-allocator.md)
 - `wsl`: [A command run in WSL from Git Bash or PowerShell arrives mangled](articles/tooling/calling-wsl-from-windows-shells.md)
 
 <!-- index:end -->
