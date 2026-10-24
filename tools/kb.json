@@ -1,0 +1,47 @@
+{
+  "main_language": "en",
+  "languages": {
+    "en": "English",
+    "ru": "Русский"
+  },
+  "areas": {
+    "lifetime": {
+      "en": "Lifetime: exit, destruction order, object ownership",
+      "ru": "Время жизни: выход, порядок разрушения, владение объектами"
+    },
+    "concurrency": {
+      "en": "Concurrency: threads, races, deadlocks, memory ordering",
+      "ru": "Многопоточность: потоки, гонки, взаимоблокировки, порядок памяти"
+    },
+    "interop": {
+      "en": "Interop: JNI, GraalVM, C API, bindings",
+      "ru": "Взаимодействие: JNI, GraalVM, C API, привязки"
+    },
+    "platform": {
+      "en": "Platform: Windows, Linux, macOS specifics",
+      "ru": "Платформы: особенности Windows, Linux, macOS"
+    },
+    "build": {
+      "en": "Build: compilers, linkers, CMake, packaging",
+      "ru": "Сборка: компиляторы, линковщики, CMake, пакеты"
+    },
+    "testing": {
+      "en": "Testing: tests, CI, sanitizers",
+      "ru": "Тестирование: тесты, CI, санитайзеры"
+    }
+  },
+  "text": {
+    "en": {
+      "by_area": "By area",
+      "by_symptom": "By symptom",
+      "by_tag": "By tag",
+      "not_translated": "not translated yet"
+    },
+    "ru": {
+      "by_area": "По областям",
+      "by_symptom": "По симптомам",
+      "by_tag": "По тегам",
+      "not_translated": "пока без перевода"
+    }
+  }
+}

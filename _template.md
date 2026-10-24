@@ -1,11 +1,17 @@
+---
+title: "<The symptom or the situation, the way people will search for it>"
+area: <lifetime | concurrency | interop | platform | build | testing>
+tags: [<tag>, <tag>]
+symptoms:
+  - "<What people will search for: an error message, a hang, an exit code>"
+updated: <YYYY-MM>
+---
+
 # <The symptom or the situation, the way people will search for it>
 
 **English** | [Русский](<name>.ru.md)
 
 <Which class of problems, where else it happens: 2–3 lines.>
-
-Tags: `<tag>` `<tag>`
-Updated: <YYYY-MM>.
 
 ## Symptoms
 

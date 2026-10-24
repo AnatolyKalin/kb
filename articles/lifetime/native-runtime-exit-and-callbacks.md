@@ -1,3 +1,16 @@
+---
+title: "Process exit when a library owns runtime threads that call back into user code"
+area: lifetime
+tags: [c++, lifetime, exit, callbacks, threads, windows-dll, graalvm, jni, sanitizers]
+symptoms:
+  - "The process hangs at exit after `return` from `main()`"
+  - "heap-use-after-free or a data race at exit under ASan / TSan"
+  - "A crash at exit on Windows: `0xc0000409` / `0xC0000005`"
+  - "A hang or a crash in `DLL_PROCESS_DETACH`"
+  - "A callback runs after the library objects are destroyed"
+updated: 2026-10
+---
+
 # Process exit when a library owns runtime threads that call back into user code
 
 **English** | [Русский](native-runtime-exit-and-callbacks.ru.md)
@@ -5,8 +18,7 @@
 A C/C++ library on top of a runtime with its own threads (GraalVM native image, JVM via JNI, .NET hosting, Python,
 any engine with a thread pool), whose threads call user code (listeners, loggers, handlers).
 
-Tags: `c++` `lifetime` `exit` `callbacks` `threads` `windows-dll` `graalvm` `jni` `sanitizers`
-Updated: 2026-10. Examples and links: [Seen in](#seen-in).
+Examples and links: [Seen in](#seen-in).
 
 ## Symptoms
 

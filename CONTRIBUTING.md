@@ -17,7 +17,39 @@ problem by the recipe, without rereading the ticket history.
   "A callback after close…". Not a ticket number, not a product name.
 - The file name is `kebab-case` by topic, in English, with no dates or numbers:
   `native-runtime-exit-and-callbacks.md`.
-- A new article gets a row in the table in `README.md` and in every translation of it.
+- The index in `README.md` and its translations is generated from the front matter, see [Checks](#checks).
+
+## Areas
+
+An article lies in `articles/<area>/`; pick the area of the root cause, not of the symptom. Tags cover the rest.
+
+- `lifetime`: exit, destruction order, object ownership, static and global objects.
+- `concurrency`: threads, races, deadlocks, memory ordering.
+- `interop`: JNI, GraalVM, C API, bindings to other languages.
+- `platform`: specifics of Windows, Linux, macOS (loaders, C runtimes, signals).
+- `build`: compilers, linkers, CMake, packaging.
+- `testing`: tests, CI, sanitizers.
+
+A new area: add it to `tools/kb.json` with its name in every language, and to this list in every translation.
+
+## Front matter
+
+Every article, in every language, starts with front matter; the index is built from it:
+
+```yaml
+---
+title: "The process hangs at exit"   # the same text as the H1
+area: lifetime                        # the folder the file lies in
+tags: [c++, exit, windows-dll]        # lowercase, no spaces; the same in every translation
+symptoms:                             # what people will search for, in the language of the file
+  - "The process hangs at exit after `return` from `main()`"
+updated: 2026-10                      # YYYY-MM
+---
+```
+
+- Only this subset of YAML: `key: value`, `key: [a, b]`, a list of `  - item` lines. Put a value in double quotes
+  when it has backticks, a colon or a `#`.
+- An article not translated yet sets `translation: pending`; without it, a missing translation fails the check.
 
 ## Languages and translations
 
@@ -26,21 +58,22 @@ problem by the recipe, without rereading the ticket history.
 - Every text (articles, `README`, `CONTRIBUTING`, the template) is kept in all the languages of the repository; now
   these are English and Russian.
 - Bring an article in any language you like. We translate it into English and into the other languages; until then
-  it is added as is, and the index marks the missing translations.
+  it is added as is with `translation: pending`, and the index marks the missing translations.
 - A new language: translate `README`, `CONTRIBUTING` and the template, and as many articles as you can; add the
   language to the language line of every file and to the index.
 - The versions say the same thing. When you change one, change the others in the same commit, or add a line under
   the title of each translation that is behind: "Behind the English version since YYYY-MM". If they differ, the
   English version is authoritative.
-- Every file starts with a language line under the title: the current language in bold, the others as links.
+- Every file starts with a language line under the title: the current language in bold, the others as links (only
+  to the versions that exist).
 - A translation keeps the structure, the code and the links; terms and identifiers stay as in the code.
 
 ## Structure
 
 The template is [`_template.md`](_template.md). Skip a section if it has nothing to say:
 
-1. **Introduction** (2–3 lines): which class of problems, where else it happens.
-2. **Tags and the update date.**
+1. **Front matter**: see [Front matter](#front-matter).
+2. **Introduction** (2–3 lines): which class of problems, where else it happens.
 3. **Symptoms**: what is visible from outside: a hang, an exit code, a sanitizer report, an error message (the key
    lines, so that search finds them).
 4. **Causes**: the mechanism, point by point; if there are several, all of them.
@@ -73,8 +106,22 @@ example cannot be shown, write a minimal one of your own.
 
 - Terms and identifiers as in the code (`atexit`, `DLL_PROCESS_DETACH`).
 - Short and to the point: lists rather than paragraphs, no story of how the bug was hunted.
-- Markdown without HTML; lines up to 120 characters; code blocks with a language (` ```cpp `).
-- When you update an article, change its "Updated" date in every language.
+- Markdown without HTML (the index markers in the READMEs are the only exception); lines up to 120 characters;
+  code blocks with a language (` ```cpp `).
+- When you update an article, change `updated` in every language.
+
+## Checks
+
+`python3 tools/gen_index.py` rewrites the index in `README.md` and its translations; run it after adding or
+changing an article and commit the result. CI runs `python3 tools/gen_index.py --check`, which fails when:
+
+- an index is stale;
+- front matter lacks a field, the area does not match the folder, the title differs from the H1;
+- a translation is missing (without `translation: pending`) or has other `area` or `tags`;
+- a relative link points to a file that does not exist.
+
+When the base grows, it can become a site with full-text search (GitHub Pages with MkDocs Material); the front
+matter is already in the form such a site needs.
 
 ## License
 
