@@ -29,8 +29,11 @@ Examples and links: [Seen in](#seen-in).
 
 ## Causes (usually all at once)
 
-1. **Runtime tear-down in a static destructor.** `graal_tear_down_isolate`, `DestroyJavaVM` and the like wait for all
-   non-daemon runtime threads. A thread that holds an open connection never ends, so the exit hangs.
+1. **Runtime tear-down in a static destructor.** `DestroyJavaVM` waits for all non-daemon threads.
+   `graal_tear_down_isolate` interrupts every other thread and waits until all of them detach, daemon or not; being a
+   daemon only lets it call `shutdownNow()` on a standard pool (`ThreadPoolExecutor`, `ScheduledThreadPoolExecutor`,
+   `ForkJoinPool`) whose threads are all daemons ([PlatformThreads.java](https://github.com/oracle/graal/blob/d148cf77a91d5573be1f4123060c8b7d344f1a50/substratevm/src/com.oracle.svm.core/src/com/oracle/svm/core/thread/PlatformThreads.java#L683-L762)). A thread that ignores interrupts or
+   holds an open connection never ends, so the exit hangs; making it a daemon does not help.
 2. **Static registries are destroyed while callbacks still run.** The runtime threads live until the process ends,
    while the registries (id → object maps, managers, contexts) are ordinary statics. A callback lands in a destroyed
    object.
