@@ -128,3 +128,43 @@ hosting, Python, любой движок с пулом потоков), и эт�
   этой статье: [dxFeed/dxfeed-graal-cxx-api#158](https://github.com/dxFeed/dxfeed-graal-cxx-api/pull/158).
   Тот же приём «ждать идущие вызовы, кроме своего потока» — у слушателей в
   [dxfeed-graal-native-sdk](https://github.com/dxFeed/dxfeed-graal-native-sdk) (`dxfg_NativeListener_deactivate`).
+- **JNI** — `DestroyJavaVM` ждёт все не-daemon потоки и только потом гасит VM: тот же механизм зависания у любого
+  встроенного JVM/GraalVM. [JNI Invocation API](https://docs.oracle.com/en/java/javase/21/docs/specs/jni/invocation.html).
+- **CPython** — поток, который во время финализации интерпретатора снова берёт GIL, раньше вызывал `pthread_exit()`;
+  тот раскручивал C++-кадры без очистки → порча памяти, падения, взаимоблокировки. С 3.14 такие потоки просто
+  повисают навсегда (ценой возможной взаимоблокировки, если поток держит нужную финализации блокировку).
+  [python/cpython#87135](https://github.com/python/cpython/issues/87135),
+  [python/cpython#105805](https://github.com/python/cpython/pull/105805); daemon-потоки при финализации
+  субинтерпретатора — [python/cpython#128639](https://github.com/python/cpython/issues/128639).
+- **gRPC C++** — падение после `return` из `main()`: ядро gRPC оставалось инициализированным, его потоки жили, пока
+  рантайм C/C++ разрушал статики. [grpc/grpc#31045](https://github.com/grpc/grpc/issues/31045) (по словам автора,
+  исправлено в 1.51.0).
+- **OpenSSL** — обработчик `atexit` падает, если libcrypto/libssl уже выгружены; опция `OPENSSL_INIT_NO_ATEXIT`
+  отключает его, и приложение само вызывает `OPENSSL_cleanup()`.
+  [OPENSSL_cleanup(3)](https://manpages.opensuse.org/Leap-15.6/openssl-1_1-doc/OPENSSL_cleanup.3ssl.en.html).
+- **abseil / Chromium** — бессмертные статики как идиома: `absl::NoDestructor` («survives during program exit»),
+  `base::NoDestructor` в Chromium.
+  [no_destructor.h](https://github.com/abseil/abseil-cpp/blob/master/absl/base/no_destructor.h).
+- **Google C++ Style Guide** — объекты со статическим временем жизни запрещены, если они не тривиально
+  разрушаемые. [Static and Global Variables](https://google.github.io/styleguide/cppguide.html#Static_and_Global_Variables).
+- **Windows** — при завершении процесса вход в «осиротевшую» критическую секцию убивает процесс; рабочие потоки
+  останавливать до `ExitProcess`, в `DllMain` ничего рискованного не делать.
+  [Raymond Chen, «During process termination, the gates are now electrified»](https://devblogs.microsoft.com/oldnewthing/20100122-00/?p=15193).
+
+## Источники по платформам
+
+- `_crt_atexit` меняет глобальную таблицу выхода:
+  [learn.microsoft.com: _crt_atexit](https://learn.microsoft.com/en-us/windows/win32/memory/crtatexit).
+- `atexit` в DLL срабатывает после `DLL_PROCESS_DETACH`:
+  [learn.microsoft.com: atexit](https://learn.microsoft.com/en-us/cpp/c-runtime-library/reference/atexit?view=msvc-170).
+- Таблица UCRT выполняется под exit lock (`onexit.cpp`, `exit.cpp` в исходниках UCRT из Windows SDK); то же
+  видно в реимплементации [ReactOS](https://doxygen.reactos.org/d2/d7c/onexit_8cpp_source.html).
+- glibc отпускает `__exit_funcs_lock` на время вызова каждого обработчика:
+  [stdlib/exit.c](https://sourceware.org/git/?p=glibc.git;a=blob;f=stdlib/exit.c).
+
+## Открытые вопросы
+
+- Похожие случаи, не проверенные по первоисточнику: Swift sourcekitd (фоновые потоки во время деструкторов статиков в
+  `exit()`, SR-12668); падение «pure virtual call» из потока gRPC на выходе в плагине Unreal (вендор не воспроизвёл).
+- Node-API `ThreadSafeFunction`: после `napi_closing` функцию не использовать, потоки дожидаться в finalize —
+  отношение к зависанию на выходе не проверено.
