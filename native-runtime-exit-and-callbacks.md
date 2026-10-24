@@ -1,5 +1,7 @@
 # Process exit when a library owns runtime threads that call back into user code
 
+**English** | [Русский](native-runtime-exit-and-callbacks.ru.md)
+
 A C/C++ library on top of a runtime with its own threads (GraalVM native image, JVM via JNI, .NET hosting, Python,
 any engine with a thread pool), whose threads call user code (listeners, loggers, handlers).
 

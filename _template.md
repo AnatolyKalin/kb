@@ -1,5 +1,7 @@
 # <The symptom or the situation, the way people will search for it>
 
+**English** | [Русский](<name>.ru.md)
+
 <Which class of problems, where else it happens: 2–3 lines.>
 
 Tags: `<tag>` `<tag>`
