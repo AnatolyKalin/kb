@@ -31,6 +31,7 @@
 
 #### Сборка: компиляторы, линковщики, CMake, пакеты
 
+- [CMake молча отбрасывает функциональный макрос из target_compile_definitions](articles/build/cmake-drops-function-like-macro-definitions.ru.md)
 - [DLL, собранной GraalVM native-image, по-прежнему нужен Visual C++ Redistributable](articles/build/native-image-dll-without-vc-redistributable.ru.md)
 - [Статическая библиотека линкуется только с одним CRT: LNK2038, LNK4098, LNK2005 в приложении](articles/build/static-library-for-any-msvc-runtime.ru.md)
 
@@ -62,8 +63,10 @@
 - `python3` печатает `Python ` и выходит с кодом 9009 — [Команда, запущенная в WSL из Git Bash или PowerShell, приходит искажённой](articles/tooling/calling-wsl-from-windows-shells.ru.md)
 - `$'\r': command not found` в скрипте из checkout на Windows — [Команда, запущенная в WSL из Git Bash или PowerShell, приходит искажённой](articles/tooling/calling-wsl-from-windows-shells.ru.md)
 - `standard malloc is _not_ redirected!` — [Аллокатор процесса заменён, а нативная библиотека всё ещё ходит в старый malloc](articles/platform/replacing-the-process-allocator.ru.md)
+- `target_compile_definitions(tgt PRIVATE "MACRO(arg)=")` не действует: определения нет в командной строке компилятора — [CMake молча отбрасывает функциональный макрос из target_compile_definitions](articles/build/cmake-drops-function-like-macro-definitions.ru.md)
 - `unknown escape sequence: '\d'`: регулярное выражение `"\\d"` записано как `"\d"` — [Из кода, записанного через оболочку, пропадают обратные слеши](articles/tooling/backslashes-lost-on-the-way-through-a-shell.ru.md)
 - `VCRUNTIME140.dll was not found` на машине без Visual C++ Redistributable — [DLL, собранной GraalVM native-image, по-прежнему нужен Visual C++ Redistributable](articles/build/native-image-dll-without-vc-redistributable.ru.md)
+- `warning: -Wdeprecated-declarations` или `C4996` в цели, где задан макрос устаревания — [CMake молча отбрасывает функциональный макрос из target_compile_definitions](articles/build/cmake-drops-function-like-macro-definitions.ru.md)
 - `;`, `<`, `>`, `\` в аргументах `wsl` работают как синтаксис оболочки — [Команда, запущенная в WSL из Git Bash или PowerShell, приходит искажённой](articles/tooling/calling-wsl-from-windows-shells.ru.md)
 - Зависание или падение в `DLL_PROCESS_DETACH` — [Выход процесса, когда библиотека держит свои потоки и зовёт колбэки](articles/lifetime/native-runtime-exit-and-callbacks.ru.md)
 - Исполняемый файл приложения экспортирует функции статической библиотеки — [Статическая библиотека линкуется только с одним CRT: LNK2038, LNK4098, LNK2005 в приложении](articles/build/static-library-for-any-msvc-runtime.ru.md)
@@ -77,6 +80,7 @@
 - Порча кучи во `free` указателя, выделенного другим модулем — [Аллокатор процесса заменён, а нативная библиотека всё ещё ходит в старый malloc](articles/platform/replacing-the-process-allocator.ru.md)
 - Процесс висит на выходе после `return` из `main()` — [Выход процесса, когда библиотека держит свои потоки и зовёт колбэки](articles/lifetime/native-runtime-exit-and-callbacks.ru.md)
 - Процесс не запускается: `0xC0000135`, не найдена `mimalloc-redirect.dll` — [Аллокатор процесса заменён, а нативная библиотека всё ещё ходит в старый malloc](articles/platform/replacing-the-process-allocator.ru.md)
+- Сборка падает с `-Werror` на предупреждениях об устаревании, которые должен был убрать заранее заданный пустой макрос — [CMake молча отбрасывает функциональный макрос из target_compile_definitions](articles/build/cmake-drops-function-like-macro-definitions.ru.md)
 
 ### По тегам
 
@@ -84,11 +88,15 @@
 - `bash`: [Из кода, записанного через оболочку, пропадают обратные слеши](articles/tooling/backslashes-lost-on-the-way-through-a-shell.ru.md)
 - `c++`: [Константы библиотеки пусты или роняют программу в инициализаторах и деструкторах глобальных объектов](articles/lifetime/library-constants-in-global-initializers.ru.md); [Выход процесса, когда библиотека держит свои потоки и зовёт колбэки](articles/lifetime/native-runtime-exit-and-callbacks.ru.md)
 - `callbacks`: [Выход процесса, когда библиотека держит свои потоки и зовёт колбэки](articles/lifetime/native-runtime-exit-and-callbacks.ru.md)
+- `clang`: [CMake молча отбрасывает функциональный макрос из target_compile_definitions](articles/build/cmake-drops-function-like-macro-definitions.ru.md)
+- `cmake`: [CMake молча отбрасывает функциональный макрос из target_compile_definitions](articles/build/cmake-drops-function-like-macro-definitions.ru.md)
 - `constexpr`: [Константы библиотеки пусты или роняют программу в инициализаторах и деструкторах глобальных объектов](articles/lifetime/library-constants-in-global-initializers.ru.md)
 - `constinit`: [Константы библиотеки пусты или роняют программу в инициализаторах и деструкторах глобальных объектов](articles/lifetime/library-constants-in-global-initializers.ru.md)
 - `crt`: [DLL, собранной GraalVM native-image, по-прежнему нужен Visual C++ Redistributable](articles/build/native-image-dll-without-vc-redistributable.ru.md); [Статическая библиотека линкуется только с одним CRT: LNK2038, LNK4098, LNK2005 в приложении](articles/build/static-library-for-any-msvc-runtime.ru.md)
+- `deprecation`: [CMake молча отбрасывает функциональный макрос из target_compile_definitions](articles/build/cmake-drops-function-like-macro-definitions.ru.md)
 - `escaping`: [Из кода, записанного через оболочку, пропадают обратные слеши](articles/tooling/backslashes-lost-on-the-way-through-a-shell.ru.md)
 - `exit`: [Выход процесса, когда библиотека держит свои потоки и зовёт колбэки](articles/lifetime/native-runtime-exit-and-callbacks.ru.md)
+- `gcc`: [CMake молча отбрасывает функциональный макрос из target_compile_definitions](articles/build/cmake-drops-function-like-macro-definitions.ru.md)
 - `git-bash`: [Из кода, записанного через оболочку, пропадают обратные слеши](articles/tooling/backslashes-lost-on-the-way-through-a-shell.ru.md); [Команда, запущенная в WSL из Git Bash или PowerShell, приходит искажённой](articles/tooling/calling-wsl-from-windows-shells.ru.md)
 - `graalvm`: [DLL, собранной GraalVM native-image, по-прежнему нужен Visual C++ Redistributable](articles/build/native-image-dll-without-vc-redistributable.ru.md); [Статическая библиотека линкуется только с одним CRT: LNK2038, LNK4098, LNK2005 в приложении](articles/build/static-library-for-any-msvc-runtime.ru.md); [Выход процесса, когда библиотека держит свои потоки и зовёт колбэки](articles/lifetime/native-runtime-exit-and-callbacks.ru.md); [Аллокатор процесса заменён, а нативная библиотека всё ещё ходит в старый malloc](articles/platform/replacing-the-process-allocator.ru.md)
 - `heredoc`: [Из кода, записанного через оболочку, пропадают обратные слеши](articles/tooling/backslashes-lost-on-the-way-through-a-shell.ru.md)
@@ -98,9 +106,10 @@
 - `linker`: [DLL, собранной GraalVM native-image, по-прежнему нужен Visual C++ Redistributable](articles/build/native-image-dll-without-vc-redistributable.ru.md); [Статическая библиотека линкуется только с одним CRT: LNK2038, LNK4098, LNK2005 в приложении](articles/build/static-library-for-any-msvc-runtime.ru.md)
 - `linux`: [Аллокатор процесса заменён, а нативная библиотека всё ещё ходит в старый malloc](articles/platform/replacing-the-process-allocator.ru.md)
 - `macos`: [Аллокатор процесса заменён, а нативная библиотека всё ещё ходит в старый malloc](articles/platform/replacing-the-process-allocator.ru.md)
+- `macro`: [CMake молча отбрасывает функциональный макрос из target_compile_definitions](articles/build/cmake-drops-function-like-macro-definitions.ru.md)
 - `malloc`: [Аллокатор процесса заменён, а нативная библиотека всё ещё ходит в старый malloc](articles/platform/replacing-the-process-allocator.ru.md)
 - `mimalloc`: [Аллокатор процесса заменён, а нативная библиотека всё ещё ходит в старый malloc](articles/platform/replacing-the-process-allocator.ru.md)
-- `msvc`: [DLL, собранной GraalVM native-image, по-прежнему нужен Visual C++ Redistributable](articles/build/native-image-dll-without-vc-redistributable.ru.md); [Статическая библиотека линкуется только с одним CRT: LNK2038, LNK4098, LNK2005 в приложении](articles/build/static-library-for-any-msvc-runtime.ru.md); [Константы библиотеки пусты или роняют программу в инициализаторах и деструкторах глобальных объектов](articles/lifetime/library-constants-in-global-initializers.ru.md)
+- `msvc`: [CMake молча отбрасывает функциональный макрос из target_compile_definitions](articles/build/cmake-drops-function-like-macro-definitions.ru.md); [DLL, собранной GraalVM native-image, по-прежнему нужен Visual C++ Redistributable](articles/build/native-image-dll-without-vc-redistributable.ru.md); [Статическая библиотека линкуется только с одним CRT: LNK2038, LNK4098, LNK2005 в приложении](articles/build/static-library-for-any-msvc-runtime.ru.md); [Константы библиотеки пусты или роняют программу в инициализаторах и деструкторах глобальных объектов](articles/lifetime/library-constants-in-global-initializers.ru.md)
 - `msys2`: [Из кода, записанного через оболочку, пропадают обратные слеши](articles/tooling/backslashes-lost-on-the-way-through-a-shell.ru.md); [Команда, запущенная в WSL из Git Bash или PowerShell, приходит искажённой](articles/tooling/calling-wsl-from-windows-shells.ru.md)
 - `native-image`: [DLL, собранной GraalVM native-image, по-прежнему нужен Visual C++ Redistributable](articles/build/native-image-dll-without-vc-redistributable.ru.md); [Статическая библиотека линкуется только с одним CRT: LNK2038, LNK4098, LNK2005 в приложении](articles/build/static-library-for-any-msvc-runtime.ru.md)
 - `performance`: [Аллокатор процесса заменён, а нативная библиотека всё ещё ходит в старый malloc](articles/platform/replacing-the-process-allocator.ru.md)
@@ -114,6 +123,7 @@
 - `static-initialization`: [Константы библиотеки пусты или роняют программу в инициализаторах и деструкторах глобальных объектов](articles/lifetime/library-constants-in-global-initializers.ru.md)
 - `static-library`: [Статическая библиотека линкуется только с одним CRT: LNK2038, LNK4098, LNK2005 в приложении](articles/build/static-library-for-any-msvc-runtime.ru.md); [Константы библиотеки пусты или роняют программу в инициализаторах и деструкторах глобальных объектов](articles/lifetime/library-constants-in-global-initializers.ru.md)
 - `threads`: [Выход процесса, когда библиотека держит свои потоки и зовёт колбэки](articles/lifetime/native-runtime-exit-and-callbacks.ru.md)
+- `werror`: [CMake молча отбрасывает функциональный макрос из target_compile_definitions](articles/build/cmake-drops-function-like-macro-definitions.ru.md)
 - `windows`: [DLL, собранной GraalVM native-image, по-прежнему нужен Visual C++ Redistributable](articles/build/native-image-dll-without-vc-redistributable.ru.md); [Статическая библиотека линкуется только с одним CRT: LNK2038, LNK4098, LNK2005 в приложении](articles/build/static-library-for-any-msvc-runtime.ru.md); [Аллокатор процесса заменён, а нативная библиотека всё ещё ходит в старый malloc](articles/platform/replacing-the-process-allocator.ru.md); [Из кода, записанного через оболочку, пропадают обратные слеши](articles/tooling/backslashes-lost-on-the-way-through-a-shell.ru.md); [Команда, запущенная в WSL из Git Bash или PowerShell, приходит искажённой](articles/tooling/calling-wsl-from-windows-shells.ru.md)
 - `windows-dll`: [DLL, собранной GraalVM native-image, по-прежнему нужен Visual C++ Redistributable](articles/build/native-image-dll-without-vc-redistributable.ru.md); [Выход процесса, когда библиотека держит свои потоки и зовёт колбэки](articles/lifetime/native-runtime-exit-and-callbacks.ru.md); [Аллокатор процесса заменён, а нативная библиотека всё ещё ходит в старый malloc](articles/platform/replacing-the-process-allocator.ru.md)
 - `wsl`: [Команда, запущенная в WSL из Git Bash или PowerShell, приходит искажённой](articles/tooling/calling-wsl-from-windows-shells.ru.md)

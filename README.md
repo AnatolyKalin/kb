@@ -33,6 +33,7 @@ translations work: [CONTRIBUTING.md](CONTRIBUTING.md); the template: [_template.
 
 - [A GraalVM native-image DLL still needs the Visual C++ Redistributable](articles/build/native-image-dll-without-vc-redistributable.md)
 - [A static library links only with one C runtime: LNK2038, LNK4098, LNK2005 in the application](articles/build/static-library-for-any-msvc-runtime.md)
+- [CMake silently drops a function-like macro from target_compile_definitions](articles/build/cmake-drops-function-like-macro-definitions.md)
 
 #### Tooling: shells, WSL, git, GitHub, editors
 
@@ -72,11 +73,14 @@ translations work: [CONTRIBUTING.md](CONTRIBUTING.md); the template: [_template.
 - `python3` prints `Python ` and exits with code 9009 — [A command run in WSL from Git Bash or PowerShell arrives mangled](articles/tooling/calling-wsl-from-windows-shells.md)
 - `$'\r': command not found` in a script from a Windows checkout — [A command run in WSL from Git Bash or PowerShell arrives mangled](articles/tooling/calling-wsl-from-windows-shells.md)
 - `standard malloc is _not_ redirected!` — [The process allocator is replaced, but a native library still uses the old malloc](articles/platform/replacing-the-process-allocator.md)
+- `target_compile_definitions(tgt PRIVATE "MACRO(arg)=")` has no effect: the definition is not on the compiler command line — [CMake silently drops a function-like macro from target_compile_definitions](articles/build/cmake-drops-function-like-macro-definitions.md)
 - The application's executable exports the functions of a static library — [A static library links only with one C runtime: LNK2038, LNK4098, LNK2005 in the application](articles/build/static-library-for-any-msvc-runtime.md)
 - The process does not start: `0xC0000135`, `mimalloc-redirect.dll` was not found — [The process allocator is replaced, but a native library still uses the old malloc](articles/platform/replacing-the-process-allocator.md)
 - The process hangs at exit after `return` from `main()` — [Process exit when a library owns runtime threads that call back into user code](articles/lifetime/native-runtime-exit-and-callbacks.md)
 - `unknown escape sequence: '\d'`: a regex `"\\d"` was written as `"\d"` — [Backslashes disappear from code written through a shell](articles/tooling/backslashes-lost-on-the-way-through-a-shell.md)
 - `VCRUNTIME140.dll was not found` on a machine without the Visual C++ Redistributable — [A GraalVM native-image DLL still needs the Visual C++ Redistributable](articles/build/native-image-dll-without-vc-redistributable.md)
+- `warning: -Wdeprecated-declarations` or `C4996` in a target that predefines the deprecation macro — [CMake silently drops a function-like macro from target_compile_definitions](articles/build/cmake-drops-function-like-macro-definitions.md)
+- `-Werror` fails the build on deprecation warnings that a predefined empty macro should remove — [CMake silently drops a function-like macro from target_compile_definitions](articles/build/cmake-drops-function-like-macro-definitions.md)
 
 ### By tag
 
@@ -84,11 +88,15 @@ translations work: [CONTRIBUTING.md](CONTRIBUTING.md); the template: [_template.
 - `bash`: [Backslashes disappear from code written through a shell](articles/tooling/backslashes-lost-on-the-way-through-a-shell.md)
 - `c++`: [Library constants are empty or crash in global initializers and destructors of user code](articles/lifetime/library-constants-in-global-initializers.md); [Process exit when a library owns runtime threads that call back into user code](articles/lifetime/native-runtime-exit-and-callbacks.md)
 - `callbacks`: [Process exit when a library owns runtime threads that call back into user code](articles/lifetime/native-runtime-exit-and-callbacks.md)
+- `clang`: [CMake silently drops a function-like macro from target_compile_definitions](articles/build/cmake-drops-function-like-macro-definitions.md)
+- `cmake`: [CMake silently drops a function-like macro from target_compile_definitions](articles/build/cmake-drops-function-like-macro-definitions.md)
 - `constexpr`: [Library constants are empty or crash in global initializers and destructors of user code](articles/lifetime/library-constants-in-global-initializers.md)
 - `constinit`: [Library constants are empty or crash in global initializers and destructors of user code](articles/lifetime/library-constants-in-global-initializers.md)
 - `crt`: [A GraalVM native-image DLL still needs the Visual C++ Redistributable](articles/build/native-image-dll-without-vc-redistributable.md); [A static library links only with one C runtime: LNK2038, LNK4098, LNK2005 in the application](articles/build/static-library-for-any-msvc-runtime.md)
+- `deprecation`: [CMake silently drops a function-like macro from target_compile_definitions](articles/build/cmake-drops-function-like-macro-definitions.md)
 - `escaping`: [Backslashes disappear from code written through a shell](articles/tooling/backslashes-lost-on-the-way-through-a-shell.md)
 - `exit`: [Process exit when a library owns runtime threads that call back into user code](articles/lifetime/native-runtime-exit-and-callbacks.md)
+- `gcc`: [CMake silently drops a function-like macro from target_compile_definitions](articles/build/cmake-drops-function-like-macro-definitions.md)
 - `git-bash`: [Backslashes disappear from code written through a shell](articles/tooling/backslashes-lost-on-the-way-through-a-shell.md); [A command run in WSL from Git Bash or PowerShell arrives mangled](articles/tooling/calling-wsl-from-windows-shells.md)
 - `graalvm`: [A GraalVM native-image DLL still needs the Visual C++ Redistributable](articles/build/native-image-dll-without-vc-redistributable.md); [A static library links only with one C runtime: LNK2038, LNK4098, LNK2005 in the application](articles/build/static-library-for-any-msvc-runtime.md); [Process exit when a library owns runtime threads that call back into user code](articles/lifetime/native-runtime-exit-and-callbacks.md); [The process allocator is replaced, but a native library still uses the old malloc](articles/platform/replacing-the-process-allocator.md)
 - `heredoc`: [Backslashes disappear from code written through a shell](articles/tooling/backslashes-lost-on-the-way-through-a-shell.md)
@@ -98,9 +106,10 @@ translations work: [CONTRIBUTING.md](CONTRIBUTING.md); the template: [_template.
 - `linker`: [A GraalVM native-image DLL still needs the Visual C++ Redistributable](articles/build/native-image-dll-without-vc-redistributable.md); [A static library links only with one C runtime: LNK2038, LNK4098, LNK2005 in the application](articles/build/static-library-for-any-msvc-runtime.md)
 - `linux`: [The process allocator is replaced, but a native library still uses the old malloc](articles/platform/replacing-the-process-allocator.md)
 - `macos`: [The process allocator is replaced, but a native library still uses the old malloc](articles/platform/replacing-the-process-allocator.md)
+- `macro`: [CMake silently drops a function-like macro from target_compile_definitions](articles/build/cmake-drops-function-like-macro-definitions.md)
 - `malloc`: [The process allocator is replaced, but a native library still uses the old malloc](articles/platform/replacing-the-process-allocator.md)
 - `mimalloc`: [The process allocator is replaced, but a native library still uses the old malloc](articles/platform/replacing-the-process-allocator.md)
-- `msvc`: [A GraalVM native-image DLL still needs the Visual C++ Redistributable](articles/build/native-image-dll-without-vc-redistributable.md); [A static library links only with one C runtime: LNK2038, LNK4098, LNK2005 in the application](articles/build/static-library-for-any-msvc-runtime.md); [Library constants are empty or crash in global initializers and destructors of user code](articles/lifetime/library-constants-in-global-initializers.md)
+- `msvc`: [CMake silently drops a function-like macro from target_compile_definitions](articles/build/cmake-drops-function-like-macro-definitions.md); [A GraalVM native-image DLL still needs the Visual C++ Redistributable](articles/build/native-image-dll-without-vc-redistributable.md); [A static library links only with one C runtime: LNK2038, LNK4098, LNK2005 in the application](articles/build/static-library-for-any-msvc-runtime.md); [Library constants are empty or crash in global initializers and destructors of user code](articles/lifetime/library-constants-in-global-initializers.md)
 - `msys2`: [Backslashes disappear from code written through a shell](articles/tooling/backslashes-lost-on-the-way-through-a-shell.md); [A command run in WSL from Git Bash or PowerShell arrives mangled](articles/tooling/calling-wsl-from-windows-shells.md)
 - `native-image`: [A GraalVM native-image DLL still needs the Visual C++ Redistributable](articles/build/native-image-dll-without-vc-redistributable.md); [A static library links only with one C runtime: LNK2038, LNK4098, LNK2005 in the application](articles/build/static-library-for-any-msvc-runtime.md)
 - `performance`: [The process allocator is replaced, but a native library still uses the old malloc](articles/platform/replacing-the-process-allocator.md)
@@ -114,6 +123,7 @@ translations work: [CONTRIBUTING.md](CONTRIBUTING.md); the template: [_template.
 - `static-initialization`: [Library constants are empty or crash in global initializers and destructors of user code](articles/lifetime/library-constants-in-global-initializers.md)
 - `static-library`: [A static library links only with one C runtime: LNK2038, LNK4098, LNK2005 in the application](articles/build/static-library-for-any-msvc-runtime.md); [Library constants are empty or crash in global initializers and destructors of user code](articles/lifetime/library-constants-in-global-initializers.md)
 - `threads`: [Process exit when a library owns runtime threads that call back into user code](articles/lifetime/native-runtime-exit-and-callbacks.md)
+- `werror`: [CMake silently drops a function-like macro from target_compile_definitions](articles/build/cmake-drops-function-like-macro-definitions.md)
 - `windows`: [A GraalVM native-image DLL still needs the Visual C++ Redistributable](articles/build/native-image-dll-without-vc-redistributable.md); [A static library links only with one C runtime: LNK2038, LNK4098, LNK2005 in the application](articles/build/static-library-for-any-msvc-runtime.md); [The process allocator is replaced, but a native library still uses the old malloc](articles/platform/replacing-the-process-allocator.md); [Backslashes disappear from code written through a shell](articles/tooling/backslashes-lost-on-the-way-through-a-shell.md); [A command run in WSL from Git Bash or PowerShell arrives mangled](articles/tooling/calling-wsl-from-windows-shells.md)
 - `windows-dll`: [A GraalVM native-image DLL still needs the Visual C++ Redistributable](articles/build/native-image-dll-without-vc-redistributable.md); [Process exit when a library owns runtime threads that call back into user code](articles/lifetime/native-runtime-exit-and-callbacks.md); [The process allocator is replaced, but a native library still uses the old malloc](articles/platform/replacing-the-process-allocator.md)
 - `wsl`: [A command run in WSL from Git Bash or PowerShell arrives mangled](articles/tooling/calling-wsl-from-windows-shells.md)
